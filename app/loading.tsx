@@ -1,0 +1,1 @@
+import {LoaderCircle} from 'lucide-react';export default function Loading(){return <div className="feedback"><LoaderCircle className="spin"/> Cargando página...</div>}

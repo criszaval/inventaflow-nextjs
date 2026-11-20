@@ -1,0 +1,4 @@
+ 'use client';
+import {useEffect,useState,useCallback} from 'react';
+export function useData<T>(url:string){const [data,setData]=useState<T|null>(null);const [loading,setLoading]=useState(true);const [error,setError]=useState('');const refresh=useCallback(async()=>{setLoading(true);setError('');try{const r=await fetch(url,{cache:'no-store'}),v=await r.json();if(!r.ok)throw Error(v.error??'No se pudo cargar');setData(v.data);}catch(e){setError(e instanceof Error?e.message:'Error de conexión')}finally{setLoading(false)}},[url]);useEffect(()=>{void refresh()},[refresh]);return {data,loading,error,refresh};}
+export async function apiAction(url:string,method:string,body?:unknown){const r=await fetch(url,{method,headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});const j=await r.json();if(!r.ok)throw Error(j.error??'Error al guardar');return j.data;}

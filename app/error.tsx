@@ -1,0 +1,1 @@
+ 'use client';import {AlertTriangle} from 'lucide-react';export default function Error({reset}:{error:Error&{digest?:string};reset:()=>void}){return <div className="feedback error-feedback"><AlertTriangle/><h2>Ocurrió un error inesperado</h2><p>Intenta cargar el contenido nuevamente.</p><button className="btn btn-primary" onClick={reset}>Reintentar</button></div>}
